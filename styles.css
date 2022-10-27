@@ -1,0 +1,36 @@
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px 200px;
+    align-content: center;
+    justify-items: center;
+}
+
+.listOfBooks {
+    display: grid;
+    align-items: space-between;
+    grid-template-rows: auto;
+    grid-template-columns: 1000px;
+    justify-items: center;
+    align-items: center;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    list-style: none;
+    align-items: center;
+    justify-items: center;
+}
+
+div.book {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    justify-items: center;
+}
+
+button.removeBtn {
+    height: auto;
+    width: auto;
+    align-self: center;
+    justify-self: center;
+}
