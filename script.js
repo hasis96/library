@@ -5,15 +5,15 @@ let myLibrary = [
     {
         "title": "Attack on Titan",
         "author": "Hajime Isayama", 
-        "read": "Reading",
+        "status": "Reading",
     },
 ];
 
 
-function book(title, author, read) {
+function book(title, author, status) {
     this.title = title;
     this.author = author;
-    this.read = read;
+    this.status = status;
     };
 
 //loops through each object in library[], creates an element for each key/value
@@ -27,13 +27,17 @@ function displayLibrary(library) {
         let newBook = document.createElement("div");
         let newTitle = document.createElement("p");
         let newAuthor = document.createElement("p");
-        let newRead = document.createElement("p");
+        let newStatus = document.createElement("button");
         let newRemove = document.createElement("button");
 
         newBook.classList.add("book");
         newTitle.classList.add("title");
         newAuthor.classList.add("author");
-        newRead.classList.add("read");
+
+        newStatus.classList.add("status");
+        newStatus.setAttribute("type", "button");
+        newStatus.id = "newStatus";
+
         newRemove.classList.add("removeBtn");
         newRemove.setAttribute("type", "button");
         newRemove.id = "newRemove";
@@ -43,9 +47,8 @@ function displayLibrary(library) {
 
         newTitle.textContent = currentBook.title;
         newAuthor.textContent = currentBook.author;
-        newRead.textContent = currentBook.read;
+        newStatus.textContent = currentBook.status;
         newRemove.textContent = "remove";
-
 
         //bookPosition keeps track of the book's index
         //splice to remove targeted book, clear's books, re-creates each book element
@@ -53,26 +56,37 @@ function displayLibrary(library) {
             library.splice(bookPosition, 1);
             listOfBooks.replaceChildren();
             displayLibrary(library);
-        })
+        });
+
+        //rotates newStatus.textContent on click to change statuses
+        newStatus.addEventListener("click", function () {
+            if (newStatus.textContent == "Not Started") {
+                newStatus.textContent = "Reading";
+            } else if (newStatus.textContent == "Reading") {
+                newStatus.textContent = "Finished";
+            } else if (newStatus.textContent == "Finished") {
+                newStatus.textContent = "Not Started";
+            }
+        });
+    
 
         newBook.appendChild(newTitle);
         newBook.appendChild(newAuthor);
-        newBook.appendChild(newRead);
+        newBook.appendChild(newStatus);
         newBook.appendChild(newRemove);
         listOfBooks.appendChild(newBook);
-
         }};
 
 //create new Book() with form, then push to myLibrary[];
 function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    const read = document.getElementById('read').value;
+    const status = document.getElementById('status').value;
 
     if (title.length === 0 || author.length === 0) {
         alert("Error, please fill out form correctly");
     } else {
-        let newBook = new book(title, author, read);
+        let newBook = new book(title, author, status);
         myLibrary.push(newBook);    
     }  
 };

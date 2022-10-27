@@ -34,3 +34,10 @@ button.removeBtn {
     align-self: center;
     justify-self: center;
 }
+
+button.status {
+    height: auto;
+    width: auto;
+    align-self: center;
+    justify-self: center;
+}
