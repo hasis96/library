@@ -9,12 +9,14 @@ let myLibrary = [
     },
 ];
 
+class book {
+    constructor(title, author, status) {
+        this.title = title;
+        this.author = author;
+        this.status = status;
+    }
+}
 
-function book(title, author, status) {
-    this.title = title;
-    this.author = author;
-    this.status = status;
-    };
 
 //loops through each object in library[], creates an element for each key/value
 //and appends each element back to the library[]
